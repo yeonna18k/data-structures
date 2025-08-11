@@ -41,10 +41,79 @@ export default class LinkedList<T> {
       arr.push(current.value)
       current = current.next;
     }
-    return arr.join(",")
+    return arr.join(" -> ")
   }
 
   getSize() {
     return this.size;
+  }
+
+  prepend(value: T) {
+    const node = new Node(value);
+    node.next = this.head;
+    this.head = node;
+    this.size++;
+  }
+
+  remove(value: T) {
+    if (!this.head) return;
+
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      this.size--;
+      return;
+    }
+
+    let current = this.head;
+    let previous = null;
+
+    while (current && current.value !== value) {
+      previous = current;
+      current = current.next!;
+    }
+    if (current) {
+      previous!.next = current.next;
+      this.size--;
+    }
+  }
+
+  getAt(index: number) {
+    if (!this.head || index < 0 || index >= this.size) return null;
+
+    let current = this.head;
+    let count = 0;
+
+    while (count !== index) {
+      current = current.next!;
+      count++
+    }
+    return current.value;
+  }
+
+  insertAt(value: T, index: number) {
+    if (!this.head || index < 0 || index > this.size) return null;
+
+    if (index === 0) {
+      this.prepend(value);
+      return;
+    }
+    if (index === this.size) {
+      this.append(value);
+      return;
+    }
+
+    let current = this.head;
+    let previous = null;
+    let count = 0;
+
+    while (count < index) {
+      previous = current;
+      current = current.next!;
+      count++
+    }
+    const node = new Node(value);
+    previous!.next = node;
+    node.next = current;
+    this.size++;
   }
  }
