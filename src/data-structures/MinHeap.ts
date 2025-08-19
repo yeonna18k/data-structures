@@ -113,4 +113,10 @@ export default class MinHeap<T> {
 
     return min;
   }
+
+  public peek(): T | null {
+    if (this.heapContainer.length === 0) return null;
+
+    return this.heapContainer[0];
+  }
 }
