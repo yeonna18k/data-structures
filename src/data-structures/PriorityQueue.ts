@@ -1,5 +1,8 @@
 import MinHeap from "./MinHeap";
 
+/**
+ * 우선순위 큐
+ */
 export default class PriorityQueue<T> {
   private minHeap: MinHeap<T>;
 
@@ -13,5 +16,21 @@ export default class PriorityQueue<T> {
 
   public poll(): T | null {
     return this.minHeap.extractMin()
+  }
+
+  public peek(): T | null {
+    return this.minHeap.peek();
+  }
+
+  public isEmpty(): boolean {
+    return this.minHeap.isEmpty();
+  }
+
+  public size(): number {
+    return this.minHeap.size();
+  }
+
+  public clear(): void {
+    this.minHeap.clear();
   }
 }

@@ -114,9 +114,25 @@ export default class MinHeap<T> {
     return min;
   }
 
+  /**
+   * 힙에서 가장 작은 값(루트 노드)를 반환합니다.
+   * @returns 가장 작은 값 또는 힙이 비어있으면 null
+   */
   public peek(): T | null {
     if (this.heapContainer.length === 0) return null;
 
     return this.heapContainer[0];
+  }
+
+  public isEmpty(): boolean {
+    return this.heapContainer.length === 0;
+  }
+
+  public size(): number {
+    return this.heapContainer.length;
+  }
+
+  public clear(): void {
+    this.heapContainer = [];
   }
 }
